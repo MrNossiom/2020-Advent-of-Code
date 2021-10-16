@@ -25,5 +25,5 @@ function secondStar(numbers) {
 }
 
 // Test
-console.log('First star: ', firstStar(input));
-console.log('Second star: ', secondStar(input));
+console.log('First star:', firstStar(input));
+console.log('Second star:', secondStar(input));

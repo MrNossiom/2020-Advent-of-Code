@@ -24,8 +24,8 @@ function isValidPasswordSecondPolicy(line) {
 	const [firstNumber, secondNumber, letter, password] = parseLine(line);
 
 	return (
-		(password.charAt(firstNumber) === letter) ^
-		(password.charAt(secondNumber) === letter)
+		(password.charAt(firstNumber - 1) === letter) ^
+		(password.charAt(secondNumber - 1) === letter)
 	);
 }
 
@@ -39,5 +39,5 @@ for (pass of second) {
 	if (isValidPasswordSecondPolicy(pass)) secondPolicyCount += 1;
 }
 
-console.log('First star: ', firstPolicyCount);
-console.log('Second star: ', secondPolicyCount);
+console.log('First star:', firstPolicyCount);
+console.log('Second star:', secondPolicyCount);
