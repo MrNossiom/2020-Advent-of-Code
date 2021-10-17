@@ -1,6 +1,10 @@
 {
-	"name": "2020-advent-of-code",
+	"name": "advent-of-code-2020",
 	"version": "1.0.0",
 	"main": "index.js",
+	"type": "module",
+	"scripts": {
+		"start": "node ."
+	},
 	"license": "MIT"
 }

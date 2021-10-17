@@ -1,7 +1,9 @@
-import input from '../input.json';
+import { getLinesOfPuzzleInput } from '../utils/parseInput.js';
+
+const input = getLinesOfPuzzleInput('01');
 
 // O(n^2) function
-function firstStar(numbers) {
+export const firstStar = (numbers) => {
 	for (i in numbers) {
 		for (ii in numbers) {
 			if (numbers[i] + numbers[ii] === 2020) {
@@ -9,10 +11,10 @@ function firstStar(numbers) {
 			}
 		}
 	}
-}
+};
 
 // O(n^3) function
-function secondStar(numbers) {
+export const secondStar = (numbers) => {
 	for (i in numbers) {
 		for (ii in numbers) {
 			for (iii in numbers) {
@@ -22,7 +24,7 @@ function secondStar(numbers) {
 			}
 		}
 	}
-}
+};
 
 // Test
 console.log('First star:', firstStar(input));

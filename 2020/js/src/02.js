@@ -1,6 +1,8 @@
-import { second } from '../input.json';
+import { getLinesOfPuzzleInput } from '../utils/parseInput.js';
 
-function parseLine(line) {
+const passwords = getLinesOfPuzzleInput('02');
+
+export const parseLine = (line) => {
 	const parts = line.split(' ');
 
 	const [firstNumber, secondNumber] = parts[0]
@@ -10,32 +12,32 @@ function parseLine(line) {
 	const password = parts[2];
 
 	return [firstNumber, secondNumber, letter, password];
-}
+};
 
-function isValidPasswordFirstPolicy(line) {
+export const isValidPasswordFirstPolicy = (line) => {
 	const [min, max, letter, password] = parseLine(line);
 
 	const numberOfLetterInPass = [...password.matchAll(letter)].length;
 
 	return numberOfLetterInPass >= min && numberOfLetterInPass <= max;
-}
+};
 
-function isValidPasswordSecondPolicy(line) {
+export const isValidPasswordSecondPolicy = (line) => {
 	const [firstNumber, secondNumber, letter, password] = parseLine(line);
 
 	return (
 		(password.charAt(firstNumber - 1) === letter) ^
 		(password.charAt(secondNumber - 1) === letter)
 	);
-}
+};
 
 let firstPolicyCount = 0;
-for (pass of second) {
+for (pass of passwords) {
 	if (isValidPasswordFirstPolicy(pass)) firstPolicyCount += 1;
 }
 
 let secondPolicyCount = 0;
-for (pass of second) {
+for (pass of passwords) {
 	if (isValidPasswordSecondPolicy(pass)) secondPolicyCount += 1;
 }
 
