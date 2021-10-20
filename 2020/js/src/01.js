@@ -1,11 +1,13 @@
 import { getLinesOfPuzzleInput } from '../utils/parseInput.js';
 
-const input = getLinesOfPuzzleInput('01');
+const input = (await getLinesOfPuzzleInput('01')).map((number) =>
+	parseInt(number, 10)
+);
 
 // O(n^2) function
 export const firstStar = (numbers) => {
-	for (i in numbers) {
-		for (ii in numbers) {
+	for (const i in numbers) {
+		for (const ii in numbers) {
 			if (numbers[i] + numbers[ii] === 2020) {
 				return `${numbers[i]} + ${numbers[ii]}`;
 			}
@@ -15,9 +17,9 @@ export const firstStar = (numbers) => {
 
 // O(n^3) function
 export const secondStar = (numbers) => {
-	for (i in numbers) {
-		for (ii in numbers) {
-			for (iii in numbers) {
+	for (const i in numbers) {
+		for (const ii in numbers) {
+			for (const iii in numbers) {
 				if (numbers[i] + numbers[ii] + numbers[iii] === 2020) {
 					return `${numbers[i]} + ${numbers[ii]} + ${numbers[iii]}`;
 				}

@@ -1,6 +1,6 @@
 import { getLinesOfPuzzleInput } from '../utils/parseInput.js';
 
-const passwords = getLinesOfPuzzleInput('02');
+const passwords = await getLinesOfPuzzleInput('02');
 
 export const parseLine = (line) => {
 	const parts = line.split(' ');
@@ -32,12 +32,12 @@ export const isValidPasswordSecondPolicy = (line) => {
 };
 
 let firstPolicyCount = 0;
-for (pass of passwords) {
+for (const pass of passwords) {
 	if (isValidPasswordFirstPolicy(pass)) firstPolicyCount += 1;
 }
 
 let secondPolicyCount = 0;
-for (pass of passwords) {
+for (const pass of passwords) {
 	if (isValidPasswordSecondPolicy(pass)) secondPolicyCount += 1;
 }
 
