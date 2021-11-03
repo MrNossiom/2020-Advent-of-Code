@@ -1,8 +1,6 @@
-import { getLinesOfPuzzleInput } from '../utils/parseInput.js';
+import { xor } from '../utils/logicalDoors.js';
 
-const passwords = await getLinesOfPuzzleInput('02');
-
-export const parseLine = (line) => {
+const parseLine = (line) => {
 	const parts = line.split(' ');
 
 	const [firstNumber, secondNumber] = parts[0]
@@ -14,32 +12,40 @@ export const parseLine = (line) => {
 	return [firstNumber, secondNumber, letter, password];
 };
 
-export const isValidPasswordFirstPolicy = (line) => {
+const isValidPasswordFirstPolicy = (line) => {
 	const [min, max, letter, password] = parseLine(line);
 
-	const numberOfLetterInPass = [...password.matchAll(letter)].length;
+	const numberOfLetterInPass = [...password.matchAll(new RegExp(letter, 'g'))]
+		.length;
 
 	return numberOfLetterInPass >= min && numberOfLetterInPass <= max;
 };
 
-export const isValidPasswordSecondPolicy = (line) => {
+const isValidPasswordSecondPolicy = (line) => {
 	const [firstNumber, secondNumber, letter, password] = parseLine(line);
 
-	return (
-		(password.charAt(firstNumber - 1) === letter) ^
-		(password.charAt(secondNumber - 1) === letter)
+	return xor(
+		password.charAt(firstNumber - 1) === letter,
+		password.charAt(secondNumber - 1) === letter
 	);
 };
 
-let firstPolicyCount = 0;
-for (const pass of passwords) {
-	if (isValidPasswordFirstPolicy(pass)) firstPolicyCount += 1;
-}
+export const firstStar = (passwords) => {
+	let validPolicyCount = 0;
 
-let secondPolicyCount = 0;
-for (const pass of passwords) {
-	if (isValidPasswordSecondPolicy(pass)) secondPolicyCount += 1;
-}
+	for (const password of passwords) {
+		if (isValidPasswordFirstPolicy(password)) validPolicyCount++;
+	}
 
-console.log('First star:', firstPolicyCount);
-console.log('Second star:', secondPolicyCount);
+	return validPolicyCount;
+};
+
+export const secondStar = (passwords) => {
+	let validPolicyCount = 0;
+
+	for (const password of passwords) {
+		if (isValidPasswordSecondPolicy(password)) validPolicyCount += 1;
+	}
+
+	return validPolicyCount;
+};
