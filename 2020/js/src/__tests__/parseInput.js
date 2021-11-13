@@ -1,4 +1,5 @@
 import {
+	getBlocksOfPuzzleInput,
 	getLinesOfPuzzleInput,
 	getPuzzleInput,
 } from '../../utils/parseInput.js';
@@ -20,7 +21,7 @@ ava('Correctly parse line by line the sample input', async (t) => {
 
 ava('Correctly parse blocks of the sample input', async (t) => {
 	t.deepEqual(
-		await getLinesOfPuzzleInput('sample'),
+		await getBlocksOfPuzzleInput('sample'),
 		SAMPLE_TEXT.split('\n\n')
 	);
 });
