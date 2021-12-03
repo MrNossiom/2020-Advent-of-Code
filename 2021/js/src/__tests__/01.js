@@ -11,5 +11,5 @@ ava('Day 01 - First Star', (t) => {
 });
 
 ava('Day 01 - Second Star', (t) => {
-	t.is(secondStar(input), 0);
+	t.is(secondStar(input), 1518);
 });
