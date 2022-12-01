@@ -9,20 +9,20 @@ static ALLOCATOR: dhat::DhatAlloc = dhat::DhatAlloc;
 
 macro_rules! day {
     ( $d:expr ) => {
-        day!($d => None, None);
+        day!($d => None, None)
     };
 
     ( $d:expr, $o1:expr ) => {
-        day!($d => Some($o1), None);
+        day!($d => Some($o1), None)
     };
 
     ( $d:expr, $o1:expr, $o2:expr ) => {
-        day!($d => Some($o1), Some($o2));
+        day!($d => Some($o1), Some($o2))
     };
 
     ( $d:expr => $o1:expr, $o2:expr ) => {
         paste::expr! {
-            solve::<_, _, [<day $d>]::[<Day $d>]>($d, $o1, $o2);
+            solve::<_, _, [<day $d>]::[<Day $d>]>($d, $o1, $o2)
         }
     };
 }
@@ -32,6 +32,8 @@ fn main() {
     let _dhat = dhat::Dhat::start_heap_profiling();
 
     println!("AOC {}", YEAR);
+
+    day!(1, 72070, 211805)
 }
 
 fn solve<O, O2, S: for<'a> Solver<'a, Output = O, Output2 = O2>>(
@@ -39,7 +41,8 @@ fn solve<O, O2, S: for<'a> Solver<'a, Output = O, Output2 = O2>>(
     part1_output: Option<O>,
     part2_output: Option<O2>,
 ) {
-    let input = std::fs::read_to_string(format!("input/{}/day{}.txt", YEAR, day_number)).unwrap();
+    let input =
+        std::fs::read_to_string(format!("../input/{}/day{}.txt", YEAR, day_number)).unwrap();
     let trimmed = input.trim();
 
     let mut args = std::env::args();
