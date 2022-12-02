@@ -12,8 +12,3 @@ impl BStrParse for [u8] {
 		lexical_core::parse(self).unwrap()
 	}
 }
-
-#[allow(clippy::trivially_copy_pass_by_ref)]
-pub const fn bytelines(&x: &u8) -> bool {
-	x == b'\n'
-}

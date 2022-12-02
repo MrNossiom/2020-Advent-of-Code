@@ -8,23 +8,23 @@ const YEAR: &str = "2022";
 static ALLOCATOR: dhat::DhatAlloc = dhat::DhatAlloc;
 
 macro_rules! day {
-    ( $d:expr ) => {
-        day!($d => None, None)
-    };
+	($d:expr) => {
+		day!($d => None, None)
+	};
 
-    ( $d:expr, $o1:expr ) => {
-        day!($d => Some($o1), None)
-    };
+	($d:expr, $o1:expr) => {
+		day!($d => Some($o1), None)
+	};
 
-    ( $d:expr, $o1:expr, $o2:expr ) => {
-        day!($d => Some($o1), Some($o2))
-    };
+	($d:expr, $o1:expr, $o2:expr) => {
+		day!($d => Some($o1), Some($o2))
+	};
 
-    ( $d:expr => $o1:expr, $o2:expr ) => {
-        paste::expr! {
-            solve::<_, _, [<day $d>]::[<Day $d>]>($d, $o1, $o2)
-        }
-    };
+	($d:expr => $o1:expr, $o2:expr) => {
+		paste::expr! {
+			solve::<_, _, [<day $d>]::[<Day $d>]>($d, $o1, $o2)
+		}
+	};
 }
 
 fn main() {
@@ -33,7 +33,8 @@ fn main() {
 
 	println!("AOC {}", YEAR);
 
-	day!(1, 72070, 211805)
+	day!(1, 72070, 211805);
+	day!(2, 11475);
 }
 
 fn solve<O, O2, S: for<'a> Solver<'a, Output = O, Output2 = O2>>(

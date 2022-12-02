@@ -8,4 +8,4 @@
 
 pub mod days;
 pub mod solver;
-pub(crate) mod util;
+pub mod util;
