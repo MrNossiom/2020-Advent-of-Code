@@ -34,7 +34,8 @@ fn main() {
 	println!("AOC {}", YEAR);
 
 	day!(1, 72070, 211805);
-	day!(2, 11475);
+	day!(2, 11475, 16862);
+	day!(3) //, 7763);
 }
 
 fn solve<O, O2, S: for<'a> Solver<'a, Output = O, Output2 = O2>>(
