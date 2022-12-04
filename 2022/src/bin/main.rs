@@ -31,11 +31,12 @@ fn main() {
 	#[cfg(debug_assertions)]
 	let _dhat = dhat::Dhat::start_heap_profiling();
 
-	println!("AOC {}", YEAR);
+	println!("AOC {YEAR}");
 
 	day!(1, 72070, 211805);
 	day!(2, 11475, 16862);
-	day!(3) //, 7763);
+	day!(3, 7763, 2569);
+	day!(4, 532, 854);
 }
 
 fn solve<O, O2, S: for<'a> Solver<'a, Output = O, Output2 = O2>>(
@@ -43,8 +44,7 @@ fn solve<O, O2, S: for<'a> Solver<'a, Output = O, Output2 = O2>>(
 	part1_output: Option<O>,
 	part2_output: Option<O2>,
 ) {
-	let input =
-		std::fs::read_to_string(format!("../input/{}/day{}.txt", YEAR, day_number)).unwrap();
+	let input = std::fs::read_to_string(format!("../input/{YEAR}/day{day_number}.txt")).unwrap();
 	let trimmed = input.trim();
 
 	let mut args = std::env::args();
@@ -68,7 +68,7 @@ fn run<'a, S: Solver<'a>>(
 	let parsed = S::parse(input);
 	let end_time = Instant::now();
 
-	println!("\nDay {}:", day_number);
+	println!("\nDay {day_number}:");
 	println!("\tparser: {:?}", (end_time - start_time));
 
 	run_part(parsed.clone(), 1, S::part1, part1_output);
@@ -81,13 +81,13 @@ fn run_part<P, O: Debug + PartialEq>(
 	part: impl Fn(P) -> O,
 	expected_output: Option<O>,
 ) {
-	print!("Part {}: ", part_number);
+	print!("Part {part_number}: ");
 
 	let start_time = Instant::now();
 	let result = part(parsed);
 	let end_time = Instant::now();
 
-	println!("{:?}", result);
+	println!("{result:?}");
 	println!("\tsolver: {:?}", (end_time - start_time));
 
 	if let Some(expected) = expected_output {
@@ -99,7 +99,7 @@ fn run_part<P, O: Debug + PartialEq>(
 
 fn bench<'a, S: Solver<'a>>(day_number: u8, input: &'a str) {
 	let mut criterion = criterion::Criterion::default().without_plots();
-	let mut group = criterion.benchmark_group(format!("Day {}", day_number));
+	let mut group = criterion.benchmark_group(format!("Day {day_number}"));
 
 	group.bench_with_input("parser", &input, |b, i| {
 		b.iter_with_large_drop(|| S::parse(i));
