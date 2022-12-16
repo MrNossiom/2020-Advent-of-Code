@@ -1,7 +1,6 @@
 use crate::solver::Solver;
 
 /// A move directive with a number of crates, a source and a destination.
-
 #[derive(Debug, Clone)]
 pub struct Move {
 	pub num_to_move: u8,

@@ -39,6 +39,7 @@ fn main() {
 	day!(4, 532, 854);
 	day!(5, "QPJPLMNNR".into(), "BQDNWJPVJ".into());
 	day!(6, 1142, 2803);
+	day!(7);
 }
 
 fn solve<O, O2, S: for<'a> Solver<'a, Output = O, Output2 = O2>>(

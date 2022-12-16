@@ -2,7 +2,7 @@ use crate::solver::Solver;
 use std::collections::HashSet;
 
 fn detect_start_sequence(packet: &str, width: usize) -> usize {
-	let buffer = packet.chars().collect::<Vec<_>>();
+	let buffer = packet.as_bytes();
 	for (counter, chars) in buffer.windows(width).enumerate() {
 		let hs = chars.iter().collect::<HashSet<_>>();
 
