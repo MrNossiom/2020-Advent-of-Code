@@ -21,7 +21,7 @@ impl<'a> Solver<'a> for Day1 {
 
 	fn part1(data: Self::Parsed) -> Self::Output {
 		// Find the largest element
-		data.into_iter().fold(std::u32::MIN, Ord::max)
+		data.into_iter().fold(u32::MIN, Ord::max)
 	}
 
 	fn part2(mut data: Self::Parsed) -> Self::Output {

@@ -21,13 +21,10 @@ impl<'a> Solver<'a> for Day3 {
 	}
 
 	fn part1(data: Self::Parsed) -> Self::Output {
-		data.map(|line| {
-			let (sack1, sack2) = line.as_bytes().split_at(line.len() / 2);
-			[sack1, sack2]
-		})
-		.map(|[one, two]| *one.iter().find(|c| two.contains(c)).unwrap())
-		.map(char_score)
-		.sum()
+		data.map(|line| line.as_bytes().split_at(line.len() / 2))
+			.map(|(one, two)| *one.iter().find(|c| two.contains(c)).unwrap())
+			.map(char_score)
+			.sum()
 	}
 
 	fn part2(data: Self::Parsed) -> Self::Output {
